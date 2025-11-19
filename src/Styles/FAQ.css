@@ -1,0 +1,98 @@
+/* FAQ Section Styling */
+.faq-section {
+  background: #fff5f7; /* Soft pink background */
+  padding: 90px 0;
+  display: flex;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.faq-container {
+  width: 90%;
+  max-width: 850px;
+  text-align: center;
+}
+
+/* Headings */
+.faq-subtitle {
+  color: #c2185b;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.faq-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 50px;
+}
+
+/* FAQ Items */
+.faq-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq-item {
+  background: #fff;
+  padding: 22px 25px;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(194, 24, 91, 0.08);
+  cursor: pointer;
+  overflow: hidden;
+  border-left: 6px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.faq-item.open {
+  border-left-color: #ff4f9a;
+  box-shadow: 0 10px 28px rgba(255, 79, 154, 0.18);
+  transform: scale(1.02);
+}
+
+/* Question Row */
+.faq-question {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Plus / Minus Icon */
+.faq-icon {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ff4f9a;
+}
+
+/* Hidden / Expandable Answer */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq-answer p {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  .faq-title {
+    font-size: 2.4rem;
+  }
+  .faq-item {
+    padding: 18px 20px;
+  }
+  .faq-question {
+    font-size: 1.05rem;
+  }
+}

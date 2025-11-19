@@ -1,0 +1,99 @@
+/* ===== OVERLAY ===== */
+.policy-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.25s ease;
+}
+
+/* ===== MODAL BOX ===== */
+.policy-modal {
+  background: #ffffff;
+  color: #333;
+  width: 85%;
+  max-width: 600px;
+  max-height: 85vh;
+  padding: 2rem;
+  border-radius: 14px;
+  position: relative;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(255, 0, 120, 0.25);
+  animation: slideUp 0.35s ease;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== CLOSE BUTTON ===== */
+.policy-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: #ff2b87;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.policy-modal-close:hover {
+  transform: scale(1.2);
+  color: #ff006a;
+}
+
+/* ===== TITLE ===== */
+.policy-modal-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #e0005a;
+  border-bottom: 2px solid rgba(224, 0, 90, 0.2);
+  padding-bottom: 6px;
+}
+
+/* ===== CONTENT ===== */
+.policy-modal-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  white-space: pre-line;
+}
+
+/* ===== SCROLLBAR ===== */
+.policy-modal::-webkit-scrollbar {
+  width: 7px;
+}
+
+.policy-modal::-webkit-scrollbar-thumb {
+  background: #ff5f9e;
+  border-radius: 8px;
+}
+
+.policy-modal::-webkit-scrollbar-thumb:hover {
+  background: #ff347f;
+}

@@ -1,0 +1,238 @@
+/* --- Base Section Styling --- */
+.success-stories-section {
+    /* Set height to 100vh as requested */
+    height: 100vh;
+    min-height: 700px; /* Optional: ensures it looks good on smaller screens */
+    width: 100%;
+    /* Gradient Background to match the image */
+    background: linear-gradient(
+        135deg,
+        #ff0055 0%, /* Lightest background color */
+        #ff00b7 20%, /* Slightly pinker */
+        #ff0073 70% /* Strong pink/magenta */
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent content overflow */
+    position: relative;
+    padding: 90px 20px;
+}
+
+/* --- Content Container and Layout --- */
+.content-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    display: grid;
+    /* Grid for the main layout: 1 column for header, 1 column for cards */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr; /* Header takes auto space, cards take the rest */
+    gap: 20px;
+    padding: 40px 0; /* Add vertical padding for breathing room */
+}
+
+/* --- Header Styling --- */
+.header-box {
+    align-self: start; /* Align to the top of the grid row */
+    padding: 0 40px;
+    max-width: 500px;
+}
+
+.match-couples-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff; /* Pink color */
+    margin-bottom: 5px;
+}
+
+.success-stories-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0 0 20px 0;
+}
+
+.subtitle-text {
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+/* --- Card Container for Positioning --- */
+.cards-container {
+    position: absolute; /* Allows for absolute positioning of cards over the background */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through to the main section if needed */
+}
+
+/* --- Individual Card Styling --- */
+.story-card {
+    pointer-events: auto; /* Re-enable clicks on the card itself */
+    position: absolute;
+    width: 350px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    /* Transform for a slight angle/lift appearance */
+    transition: transform 0.3s ease-in-out;
+}
+
+.story-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* Custom positioning based on the image */
+.story-card.bottom-left {
+    top: 35%;
+    left: 10%;
+    transform: rotate(-5deg); /* Slight rotation */
+}
+
+.story-card.top-right {
+    top: 13%;
+    right: 5%;
+    transform: rotate(3deg); /* Slight rotation */
+}
+
+.story-card.bottom-right {
+    top: 53%;
+    right: 15%;
+    transform: rotate(0deg);
+}
+
+/* --- Quote and Text Styling --- */
+.quote-icon {
+    font-family: 'Times New Roman', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: #ff68a2; /* Light pink/magenta for quotes */
+    position: absolute;
+    line-height: 0.5;
+    z-index: 1;
+}
+
+.quote-start {
+    top: 10px;
+    left: 15px;
+}
+
+.quote-end {
+    bottom: 0px;
+    right: 15px;
+    /* Mirror the quote end for better visual balance */
+    transform: scaleX(-1) scaleY(-1);
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.6;
+    margin: 30px 0 20px 0; /* Space for the quote icons */
+    position: relative;
+    z-index: 2; /* Ensure text is above the quote icon */
+}
+
+/* --- Card Footer (Name and Image) --- */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.person-name {
+    font-weight: 600;
+    color: #cc3078;
+    font-size: 1.1rem;
+    margin: 0;
+    /* Adjust text position based on the image's layout */
+    padding-left: 20px;
+}
+
+.image-wrapper {
+    width: 80px;
+    height: 80px;
+    /* Gradient border to match the image */
+    background: linear-gradient(45deg, #ffc9e1, #cc3078);
+    border-radius: 50%;
+    padding: 5px; /* Creates the pink border effect */
+    box-shadow: 0 5px 15px rgba(204, 48, 120, 0.3);
+}
+
+.person-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+/* --- Media Queries for Responsiveness (Optional but recommended for 100vh layout) --- */
+@media (max-width: 1024px) {
+    .success-stories-title {
+        font-size: 2.8rem;
+    }
+
+    .story-card {
+        width: 300px;
+    }
+
+    /* Adjusting card positions for smaller screens */
+    .story-card.bottom-left {
+        top: 60%;
+        left: 5%;
+    }
+
+    .story-card.top-right {
+        top: 10%;
+        right: 0%;
+    }
+
+    .story-card.bottom-right {
+        bottom: 5%;
+        right: 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .success-stories-section {
+        height: auto;
+        min-height: 100vh;
+        padding-top: 150px; /* More space for the top content */
+        display: block;
+    }
+
+    .cards-container {
+        position: static;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .story-card {
+        position: static;
+        transform: none !important;
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .header-box {
+        text-align: center;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}

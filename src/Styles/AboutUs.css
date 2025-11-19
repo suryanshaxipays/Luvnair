@@ -1,0 +1,180 @@
+/* ---------------- Wrapper ---------------- */
+.about-wrapper {
+  background: #ffeef3;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+  /* Ensure we have enough height context */
+  min-height: 100vh; 
+}
+
+.about-heading {
+  text-align: center; /* Centered Heading */
+  font-size: 48px;
+  font-weight: 700;
+  color: #c2185b;
+  margin-bottom: 60px;
+}
+
+/* ---------------- Timeline Container ---------------- */
+.timeline-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; /* Constrain width for large screens */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* The vertical line sitting in the absolute middle */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 100%; /* Spans the full height of the container */
+  background: rgba(194, 24, 91, 0.15); /* Light track color */
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.timeline-fill {
+  width: 100%;
+  background: #ff4f9a;
+  box-shadow: 0 0 15px rgba(255, 79, 154, 0.6);
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Remove transition for scroll to make it feel instant/attached to scroll */
+  /* transition: height 0.1s linear; */ 
+}
+
+.timeline-arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff4f9a;
+  font-size: 28px;
+  line-height: 1;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 2;
+  /* Adjust this to center the arrow exactly on the tip of the fill */
+  margin-top: -5px; 
+}
+
+/* ---------------- Steps Layout ---------------- */
+.steps {
+  width: 100%;
+  position: relative;
+  z-index: 2; /* Steps sit above the line */
+}
+
+.step {
+  display: flex;
+  justify-content: space-between; /* Pushes content to far left and right */
+  align-items: center;
+  margin-bottom: 150px; /* Spacing between steps */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+  width: 100%;
+}
+
+/* Animation Trigger */
+.step.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Blocks inside a step */
+.step-block {
+  width: 45%; /* Leave 10% gap in middle for the line */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Specific Alignment */
+.left-block {
+  align-items: flex-end; /* Content on left aligns towards the center line */
+  text-align: right;
+  padding-right: 30px;
+}
+
+.right-block {
+  align-items: flex-start; /* Content on right aligns towards the center line */
+  text-align: left;
+  padding-left: 30px;
+}
+
+/* Text Styling */
+.text-content h3 {
+  color: #c2185b;
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.text-content p {
+  /* CHANGED COLOR for visibility */
+  color: #4a4a4a; 
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Image Placeholder Styling */
+.img-placeholder {
+  width: 100%;
+  max-width: 350px;
+  height: 230px;
+  background: #ffbdd7;
+  border-radius: 20px;
+  color: #c2185b;
+  font-weight: bold;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(194, 24, 91, 0.15);
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 20px; /* Move line to the left on mobile */
+  }
+  
+  .step {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 50px; /* Make room for the line */
+    width: auto;
+    margin-bottom: 80px;
+  }
+
+  .step.reverse {
+    flex-direction: column; /* Stack normally on mobile */
+  }
+
+  .step-block {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+  }
+  
+  .img-placeholder {
+    margin-bottom: 20px;
+  }
+}
+
+/* ------------------- ADDED IMAGE STYLE (ONLY NEW THING) ------------------- */
+.about-img {
+  width: 100%;
+  max-width: 55 0px;
+  height: 430px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(194, 24, 91, 0.15);
+}
