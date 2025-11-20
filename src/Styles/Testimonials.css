@@ -2,7 +2,7 @@
 .success-stories-section {
     /* Set height to 100vh as requested */
     height: 100vh;
-    min-height: 700px; /* Optional: ensures it looks good on smaller screens */
+    min-height: 850px; /* Optional: ensures it looks good on smaller screens */
     width: 100%;
     /* Gradient Background to match the image */
     background: linear-gradient(
@@ -92,7 +92,7 @@
 
 /* Custom positioning based on the image */
 .story-card.bottom-left {
-    top: 35%;
+    top: 45%;
     left: 10%;
     transform: rotate(-5deg); /* Slight rotation */
 }

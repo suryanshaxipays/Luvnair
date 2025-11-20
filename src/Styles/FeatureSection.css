@@ -1,0 +1,218 @@
+/* Color Variables */
+:root {
+  --color-primary: #ff69b4; /* Deep Pink - for accent */
+  --color-secondary: #f6e7e9; /* Light Pink - Section background */
+  --color-text-dark: #333333;
+  --color-text-light: #555555;
+  --color-white: #ffffff;
+  --color-shadow: rgba(255, 105, 180, 0.3); /* Pink shadow for depth */
+  --border-radius-pill: 50px;
+  --border-radius-card: 16px;
+  --transition-speed: 0.3s;
+}
+
+/* Base Section Styling */
+.feature-section {
+  background-color: var(--color-secondary); /* Light Pink background */
+  padding: 80px 0;
+  font-family: 'Arial', sans-serif; /* Use a clean, modern font stack */
+  height: 130vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styling */
+.feature-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.feature-heading {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-text-dark);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.feature-subheading {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Pill Bar / Navigation Styling */
+.pill-bar-wrapper {
+  /* This wrapper helps center the bar and manage mobile scroll behavior */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.pill-bar {
+  display: flex;
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white for a soft look */
+  border-radius: var(--border-radius-pill);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Mobile Scrollable */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+  max-width: 100%;
+}
+
+/* Hide scrollbar for a cleaner look */
+.pill-bar::-webkit-scrollbar {
+  display: none;
+}
+.pill-bar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.pill {
+  white-space: nowrap; /* Prevent feature names from wrapping */
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  background-color: transparent;
+  color: var(--color-text-dark);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--border-radius-pill);
+  transition: background-color var(--transition-speed), color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.pill:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.pill.active {
+  background-color: var(--color-primary); /* Highlight with deep pink */
+  color: var(--color-white);
+  box-shadow: 0 4px 10px var(--color-shadow); /* Soft pink shadow */
+}
+
+/* Feature Card Styling */
+.feature-card-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: row; /* Default: Image on Left */
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ensures rounded corners cut off the image */
+  max-width: 1000px;
+  width: 100%;
+  transition: transform var(--transition-speed);
+  height: 62vh;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+/* Image Column */
+.feature-card-image-col {
+  flex: 1; /* Takes up 50% of the space on desktop */
+  min-height: 300px; /* Ensure image column has height */
+}
+
+.feature-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the container without distortion */
+  display: block;
+}
+
+/* Content Column */
+.feature-card-content-col {
+  flex: 1; /* Takes up 50% of the space on desktop */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feature-card-title {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.feature-card-short-desc {
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.feature-card-long-desc {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* --- Responsiveness (Mobile First) --- */
+
+@media (max-width: 900px) {
+  .feature-section {
+    padding: 60px 0;
+  }
+
+  .feature-card {
+    flex-direction: column; /* Stack image and content vertically on mobile/tablet */
+  }
+
+  .feature-card-image-col {
+    /* For stacked layout, the image should take up less vertical space */
+    max-height: 250px;
+  }
+
+  .feature-card-content-col {
+    padding: 30px;
+  }
+
+  .feature-card-title {
+    font-size: 1.75rem;
+  }
+
+  .feature-card-short-desc {
+    font-size: 1.1rem;
+  }
+
+  .pill-bar {
+    justify-content: flex-start; /* Aligns pills to the start on mobile scroll */
+    padding: 8px 0; /* Adjust padding for full-width scroll */
+    border-radius: 0; /* Optional: Remove roundness at edges for smoother scroll feel */
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0 20px; /* Bring it back into padding area */
+  }
+
+  .pill {
+    flex-shrink: 0; /* Important: Prevents pills from shrinking */
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-section {
+    padding: 40px 0;
+  }
+
+  .feature-card-content-col {
+    padding: 20px;
+  }
+}

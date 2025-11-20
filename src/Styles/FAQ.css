@@ -1,6 +1,11 @@
 /* FAQ Section Styling */
 .faq-section {
-  background: #fff5f7; /* Soft pink background */
+  background: linear-gradient(
+        135deg,
+        #ff0055 0%, /* Lightest background color */
+        #ff00b7 20%, /* Slightly pinker */
+        #ff0073 70% /* Strong pink/magenta */
+    );
   padding: 90px 0;
   display: flex;
   justify-content: center;
@@ -15,7 +20,7 @@
 
 /* Headings */
 .faq-subtitle {
-  color: #c2185b;
+  color: #f9a9c9;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 10px;
@@ -24,7 +29,7 @@
 .faq-title {
   font-size: 3rem;
   font-weight: 700;
-  color: #222;
+  color: #ffffff;
   margin-bottom: 50px;
 }
 
