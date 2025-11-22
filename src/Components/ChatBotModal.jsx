@@ -117,7 +117,7 @@ Now reply to the user in a loving, sweet, helpful tone.`;
     <div className="chatbot-modal-overlay">
       <div className="chatbot-modal">
         <div className="chatbot-header">
-          <h3>💕 Luvnair ChatBot</h3>
+          <h3>Luvnair Assistant</h3>
           <button className="close-btn" onClick={onClose}>×</button>
         </div>
 
