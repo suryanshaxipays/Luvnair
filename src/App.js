@@ -11,21 +11,54 @@ import Premium from "./Pages/Premium";
 import Profile from "./Pages/Profile";
 import Story from "./Pages/Story";
 
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Home />} />
-        <Route path="/Chat" element={<Chat />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Match" element={<Match />} />
-        <Route path="/Payment" element={<Payment />} />
-        <Route path="/Platform" element={<Platform />} />
-        <Route path="/Premium" element={<Premium />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/Story" element={<Story />} />        
+
+        {/* Protected pages */}
+        <Route
+          path="/Chat"
+          element={<ProtectedRoute><Chat /></ProtectedRoute>}
+        />
+        
+        <Route
+          path="/Match"
+          element={<ProtectedRoute><Match /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/Payment"
+          element={<ProtectedRoute><Payment /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/Platform"
+          element={<ProtectedRoute><Platform /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/Premium"
+          element={<ProtectedRoute><Premium /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/Profile"
+          element={<ProtectedRoute><Profile /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/Story"
+          element={<ProtectedRoute><Story /></ProtectedRoute>}
+        />
+
+        {/* 404 */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </div>

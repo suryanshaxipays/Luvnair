@@ -4,36 +4,34 @@
   padding: 80px 0;
   position: relative;
   overflow: hidden;
-  /* Ensure we have enough height context */
-  min-height: 100vh; 
+  /* Removed min-height to let content dictate size, helps performance */
 }
 
 .about-heading {
-  text-align: center; /* Centered Heading */
-  font-size: 48px;
+  text-align: center;
+  font-size: 3.5rem;
   font-weight: 700;
   color: #c2185b;
   margin-bottom: 60px;
 }
 
-/* ---------------- Timeline Container ---------------- */
+/* ---------------- Timeline ---------------- */
 .timeline-container {
   position: relative;
   width: 100%;
-  max-width: 1200px; /* Constrain width for large screens */
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
 }
 
-/* The vertical line sitting in the absolute middle */
 .timeline-line {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 6px;
-  height: 100%; /* Spans the full height of the container */
-  background: rgba(194, 24, 91, 0.15); /* Light track color */
+  height: 100%;
+  background: rgba(194, 24, 91, 0.15);
   border-radius: 20px;
   z-index: 1;
 }
@@ -41,13 +39,12 @@
 .timeline-fill {
   width: 100%;
   background: #ff4f9a;
-  box-shadow: 0 0 15px rgba(255, 79, 154, 0.6);
   border-radius: 20px;
   position: absolute;
   top: 0;
   left: 0;
-  /* Remove transition for scroll to make it feel instant/attached to scroll */
-  /* transition: height 0.1s linear; */ 
+  height: 0%; /* Default start */
+  /* REMOVED transition here to make scroll instant and non-laggy */
 }
 
 .timeline-arrow {
@@ -56,125 +53,114 @@
   transform: translateX(-50%);
   color: #ff4f9a;
   font-size: 28px;
-  line-height: 1;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: -15px;
   z-index: 2;
-  /* Adjust this to center the arrow exactly on the tip of the fill */
-  margin-top: -5px; 
+  top: 0%; /* Default start */
 }
 
-/* ---------------- Steps Layout ---------------- */
+/* ---------------- Steps ---------------- */
 .steps {
   width: 100%;
   position: relative;
-  z-index: 2; /* Steps sit above the line */
+  z-index: 2;
 }
 
 .step {
   display: flex;
-  justify-content: space-between; /* Pushes content to far left and right */
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 150px; /* Spacing between steps */
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease-out;
-  width: 100%;
+  margin-bottom: 150px;
+  /* REMOVED: opacity, transition, will-change */
 }
 
-/* Animation Trigger */
-.step.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* REMOVED: .step.show class */
 
-/* Blocks inside a step */
 .step-block {
-  width: 45%; /* Leave 10% gap in middle for the line */
+  width: 45%;
   display: flex;
   flex-direction: column;
 }
 
-/* Specific Alignment */
+
+
 .left-block {
-  align-items: flex-end; /* Content on left aligns towards the center line */
+  align-items: flex-end;
   text-align: right;
   padding-right: 30px;
 }
 
+.left-block:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+
+}
+
 .right-block {
-  align-items: flex-start; /* Content on right aligns towards the center line */
+  align-items: flex-start;
   text-align: left;
   padding-left: 30px;
 }
 
-/* Text Styling */
+.right-block:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+
+}
+
+/* ---------------- Text ---------------- */
 .text-content h3 {
   color: #c2185b;
-  font-size: 28px;
+  font-size: 2rem;
   margin-bottom: 15px;
   font-weight: 700;
 }
 
 .text-content p {
-  /* CHANGED COLOR for visibility */
-  color: #4a4a4a; 
-  font-size: 17px;
+  color: #4a4a4a;
+  font-size: 1.3rem;
   line-height: 1.6;
   font-weight: 500;
 }
 
-/* Image Placeholder Styling */
-.img-placeholder {
-  width: 100%;
-  max-width: 350px;
-  height: 230px;
-  background: #ffbdd7;
+/* ---------------- Images ---------------- */
+.about-img {
+  width: 500px;
+  height: 400px;
+  object-fit: cover;
   border-radius: 20px;
-  color: #c2185b;
-  font-weight: bold;
-  font-size: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0 8px 20px rgba(194, 24, 91, 0.15);
+  /* REMOVED: will-change (saves memory) */
 }
 
-/* Responsive for Mobile */
+
+/* ---------------- Mobile ---------------- */
 @media (max-width: 768px) {
   .timeline-line {
-    left: 20px; /* Move line to the left on mobile */
+    left: 20px;
   }
-  
+
   .step {
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 50px; /* Make room for the line */
-    width: auto;
+    margin-left: 50px;
     margin-bottom: 80px;
   }
 
   .step.reverse {
-    flex-direction: column; /* Stack normally on mobile */
+    flex-direction: column;
   }
 
   .step-block {
     width: 100%;
+    padding: 0;
     align-items: flex-start;
     text-align: left;
-    padding: 0;
   }
-  
-  .img-placeholder {
-    margin-bottom: 20px;
-  }
-}
 
-/* ------------------- ADDED IMAGE STYLE (ONLY NEW THING) ------------------- */
-.about-img {
-  width: 100%;
-  max-width: 55 0px;
-  height: 430px;
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(194, 24, 91, 0.15);
+
+
+  .about-img {
+    max-height: 300px;
+    width: 100%;
+  }
 }

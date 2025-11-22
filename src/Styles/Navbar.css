@@ -22,7 +22,7 @@
 /* ---------- Center Menu (Pill Navigation) ---------- */
 .nav-center {
   display: flex;
-  gap: 25px;                      
+  gap: 30px;                      
   list-style: none;
 
   background: #e91e63;
@@ -90,4 +90,36 @@
   .nav-center {
     display: none;   
   }
+}
+
+/* ---------- Logged-in User Box ---------- */
+.loggedin-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.username-tag {
+  background: #ffe3ef;
+  color: #e91e63;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ---------- Logout Button ---------- */
+.logout-btn {
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #c01752;
 }

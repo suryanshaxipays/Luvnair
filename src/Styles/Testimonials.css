@@ -1,112 +1,144 @@
 /* --- Base Section Styling --- */
 .success-stories-section {
-    /* Set height to 100vh as requested */
-    height: 100vh;
-    min-height: 850px; /* Optional: ensures it looks good on smaller screens */
+    min-height: 120vh;
     width: 100%;
-    /* Gradient Background to match the image */
     background: linear-gradient(
         135deg,
-        #ff0055 0%, /* Lightest background color */
-        #ff00b7 20%, /* Slightly pinker */
-        #ff0073 70% /* Strong pink/magenta */
+        #ff0055 0%,
+        #ff00b7 20%,
+        #ff0073 70%
     );
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Prevent content overflow */
     position: relative;
     padding: 90px 20px;
+    overflow: hidden;
 }
 
-/* --- Content Container and Layout --- */
+/* --- Content Container --- */
 .content-container {
     width: 100%;
     max-width: 1200px;
-    height: 100%;
     display: grid;
-    /* Grid for the main layout: 1 column for header, 1 column for cards */
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr; /* Header takes auto space, cards take the rest */
+    grid-template-rows: auto 1fr;
     gap: 20px;
-    padding: 40px 0; /* Add vertical padding for breathing room */
+    padding: 40px 0;
 }
 
 /* --- Header Styling --- */
 .header-box {
-    align-self: start; /* Align to the top of the grid row */
+    align-self: start;
     padding: 0 40px;
     max-width: 500px;
+    position: relative;
+    z-index: 50;
+    margin-top: -50vh;
 }
 
 .match-couples-text {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 500;
-    color: #ffffff; /* Pink color */
+    color: #ffb3dd;
     margin-bottom: 5px;
 }
 
 .success-stories-title {
     font-size: 3.5rem;
     font-weight: 700;
-    color: #ffffff;
+    color: #fff;
     line-height: 1;
-    margin: 0 0 20px 0;
+    margin-bottom: 20px;
+        margin-top: 14px;
+
 }
 
 .subtitle-text {
     font-size: 1rem;
-    color: #ffffff;
+    color: #fff;
     line-height: 1.5;
 }
 
-/* --- Card Container for Positioning --- */
+/* --- Share Button --- */
+.Share-btn {
+    background: #ffffff;
+    color: #e91e63;   
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+}
+
+.Share-btn:hover {
+    transform: translateY(-3px);
+    background: #ffe1ed;
+}
+
+/* --- Card Container (FIXED BLOCKING ISSUE) --- */
 .cards-container {
-    position: absolute; /* Allows for absolute positioning of cards over the background */
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 1200px;
     height: 100%;
-    pointer-events: none; /* Allows clicks to pass through to the main section if needed */
+
+    pointer-events: none; /* Prevents cards from blocking clicks */
 }
 
 /* --- Individual Card Styling --- */
 .story-card {
-    pointer-events: auto; /* Re-enable clicks on the card itself */
     position: absolute;
-    width: 350px;
+    width: 380px;
     padding: 30px;
-    background-color: #fff;
+    background: #fff;
     border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    /* Transform for a slight angle/lift appearance */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     transition: transform 0.3s ease-in-out;
+
+    cursor: pointer;
+    pointer-events: auto; /* Re-enable hover only for card */
 }
 
-.story-card:hover {
-    transform: scale(1.05);
-    z-index: 10;
-}
-
-/* Custom positioning based on the image */
+/* --- Card Positions + Hover Effects --- */
 .story-card.bottom-left {
-    top: 45%;
-    left: 10%;
-    transform: rotate(-5deg); /* Slight rotation */
+    top: 48%;
+    left: 7%;
+    transform: rotate(-5deg);
+}
+
+.story-card.bottom-left:hover {
+    transform: rotate(-5deg) scale(1.05);
+    z-index: 20;
 }
 
 .story-card.top-right {
-    top: 13%;
+    top: 14%;
     right: 5%;
-    transform: rotate(3deg); /* Slight rotation */
+    transform: rotate(3deg);
+}
+
+.story-card.top-right:hover {
+    transform: rotate(3deg) scale(1.05);
+    z-index: 20;
 }
 
 .story-card.bottom-right {
-    top: 53%;
+    top: 55%;
     right: 15%;
     transform: rotate(0deg);
+}
+
+.story-card.bottom-right:hover {
+    transform: rotate(0deg) scale(1.05);
+    z-index: 20;
 }
 
 /* --- Quote and Text Styling --- */
@@ -114,7 +146,7 @@
     font-family: 'Times New Roman', serif;
     font-size: 5rem;
     font-weight: 700;
-    color: #ff68a2; /* Light pink/magenta for quotes */
+    color: #ff68a2;
     position: absolute;
     line-height: 0.5;
     z-index: 1;
@@ -126,22 +158,21 @@
 }
 
 .quote-end {
-    bottom: 0px;
+    bottom: 10px;
     right: 15px;
-    /* Mirror the quote end for better visual balance */
     transform: scaleX(-1) scaleY(-1);
 }
 
 .quote-text {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #444;
     line-height: 1.6;
-    margin: 30px 0 20px 0; /* Space for the quote icons */
+    margin: 30px 0 20px 0;
     position: relative;
-    z-index: 2; /* Ensure text is above the quote icon */
+    z-index: 2;
 }
 
-/* --- Card Footer (Name and Image) --- */
+/* --- Footer --- */
 .card-footer {
     display: flex;
     justify-content: space-between;
@@ -154,19 +185,17 @@
 .person-name {
     font-weight: 600;
     color: #cc3078;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin: 0;
-    /* Adjust text position based on the image's layout */
     padding-left: 20px;
 }
 
 .image-wrapper {
     width: 80px;
     height: 80px;
-    /* Gradient border to match the image */
     background: linear-gradient(45deg, #ffc9e1, #cc3078);
     border-radius: 50%;
-    padding: 5px; /* Creates the pink border effect */
+    padding: 5px;
     box-shadow: 0 5px 15px rgba(204, 48, 120, 0.3);
 }
 
@@ -175,10 +204,9 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    display: block;
 }
 
-/* --- Media Queries for Responsiveness (Optional but recommended for 100vh layout) --- */
+/* --- Responsive Fixes --- */
 @media (max-width: 1024px) {
     .success-stories-title {
         font-size: 2.8rem;
@@ -188,7 +216,6 @@
         width: 300px;
     }
 
-    /* Adjusting card positions for smaller screens */
     .story-card.bottom-left {
         top: 60%;
         left: 5%;
@@ -208,8 +235,7 @@
 @media (max-width: 768px) {
     .success-stories-section {
         height: auto;
-        min-height: 100vh;
-        padding-top: 150px; /* More space for the top content */
+        padding-top: 150px;
         display: block;
     }
 
@@ -221,6 +247,8 @@
         align-items: center;
         gap: 30px;
         margin-top: 40px;
+
+        pointer-events: auto; /* safe for mobile */
     }
 
     .story-card {

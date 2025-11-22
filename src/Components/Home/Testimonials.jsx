@@ -1,5 +1,6 @@
-import React from 'react';
 import '../../Styles/Testimonials.css';
+import { useNavigate } from "react-router-dom";
+
 
 // ✅ Import images
 import Couple1 from "../../Assets/Couple1.jpg";
@@ -7,27 +8,32 @@ import Couple2 from "../../Assets/Couple2.jpg";
 import Couple3 from "../../Assets/Couple3.jpg";
 
 const Testimonials = () => {
+
+    const navigate = useNavigate();
+
+
   // Data for the success stories
   const stories = [
-    {
-      name: "Notsl Dam",
-      quote: "Wee vve svr enant tis yvunfvasd apole sokedvid to the dithcing land ants hwe four vig in your ingrehues.",
-      image: Couple1,      // ⭐ Using imported image
-      position: 'bottom-left'
-    },
-    {
-      name: "Mathel Nam",
-      quote: "Mooofoon the thv svsers forhoots the sttes or vvut nignt eadills with tis. Villiat man büng and deepevy dous mond thert that fnyvs.",
-      image: Couple2,      // ⭐ Using imported image
-      position: 'top-right'
-    },
-    {
-      name: "Natlel Nam",
-      quote: "Wee the yve solmee tam that bo ill to lose theet mant and bovite all the. I hte erpament be the ans lamv leildee trax ation wara prilits.",
-      image: Couple3,      // ⭐ Using imported image
-      position: 'bottom-right'
-    }
-  ];
+  {
+    name: "Notsl Dam",
+    quote: "We have always seen that young people choose a good path and grow together in their life journey.",
+    image: Couple1,
+    position: 'bottom-left'
+  },
+  {
+    name: "Mathel Nam",
+    quote: "Many old stories tell how small steps at night can show a lot. Simple moments can make strong bonds between people.",
+    image: Couple2,
+    position: 'top-right'
+  },
+  {
+    name: "Natlel Nam",
+    quote: "We are the ones who see time change, but we do not lose hope. I believe staying loyal gives a calm and steady path.",
+    image: Couple3,
+    position: 'bottom-right'
+  }
+];
+
 
   return (
     <section className="success-stories-section">
@@ -41,6 +47,9 @@ const Testimonials = () => {
             Mart ate nert stilev san onderrley sb etties, thlts colov. 
             anen tvet to leart erpoy huis and and attble reda an you ponteries.
           </p>
+          <button className="Share-btn" onClick={() => navigate("/Login")}>
+            Share Your Story
+          </button>
         </div>
 
         {/* Cards */}
