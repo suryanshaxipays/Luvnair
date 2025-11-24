@@ -1,0 +1,36 @@
+.navbar2-container {
+  width: 100%;
+  height: 70px;
+  background: #ffb6d9; /* soft light pink */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 3px 10px rgba(255, 0, 100, 0.2);
+}
+
+.navbar2-logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff2f86; /* dark pink */
+  cursor: pointer;
+}
+
+.navbar2-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar2-profile-btn {
+  padding: 8px 18px;
+  background: #ff2f86;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+}

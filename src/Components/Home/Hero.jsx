@@ -1,4 +1,6 @@
 import "../../Styles/Hero.css";
+import { Link } from "react-router-dom";
+
 
 const Hero = () => {
   return (
@@ -22,9 +24,11 @@ const Hero = () => {
           Meet people who actually resonate with your personality, energy, and intentions.
         </p>
 
-        <a href="#features" className="btn btn-primary">
-          Find My Match
-        </a>
+        
+<Link to="/Platform" className="btn btn-primary">
+  Find My Match
+</Link>
+
 
         
       </div>

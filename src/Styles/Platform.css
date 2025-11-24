@@ -1,0 +1,64 @@
+.platform-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffe3f0;
+  padding-top: 90px; 
+  padding-bottom: 100px;
+}
+
+.profile-card-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.profile-card {
+  width: 330px;
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.profile-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.profile-card h2 {
+  margin: 15px 0;
+  color: #ff2f86;
+}
+
+.swipe-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.swipe-buttons button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.reject {
+  background: #ffb6d9;
+}
+
+.accept {
+  background: #ff2f86;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
