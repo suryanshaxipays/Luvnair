@@ -47,7 +47,7 @@ const Testimonials = () => {
             Mart ate nert stilev san onderrley sb etties, thlts colov. 
             anen tvet to leart erpoy huis and and attble reda an you ponteries.
           </p>
-          <button className="Share-btn" onClick={() => navigate("/Login")}>
+          <button className="Share-btn" onClick={() => navigate("/StoryPage")}>
             Share Your Story
           </button>
         </div>

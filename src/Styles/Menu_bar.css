@@ -1,22 +1,59 @@
 .menu-bar-container {
-  width: 100%;
+  width: 40%;
   height: 70px;
-  background: #ff2f86; /* pink bar */
+  background: #ffd6e8; /* light pink FULL container */
   display: flex;
   justify-content: space-around;
   align-items: center;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  border-radius: 15px 15px 0 0;
+  left: 50%;
+  top: 88vh;
+  transform: translateX(-50%);
+  z-index: 20;
+  border-radius: 60px;
+  overflow: hidden;
+  padding: 0;
+  position: fixed;
 }
 
+/* Sliding indicator under button */
+.slider {
+  position: absolute;
+  bottom: 0;
+  width: 33.33%;
+  height: 6px;
+  background: #ff2f86; /* pink bar */
+  border-radius: 10px;
+  transition: left 0.3s ease;
+  z-index: 1;
+}
+
+/* Base Style for all buttons */
 .menu-bar-container button {
-  background: none;
+  width: 33.33%;
+  height: 100%;
   border: none;
-  color: white;
-  font-size: 18px;
+  background: #ffd6e8; /* NON selected bg */
+  color: #ff2f86; /* NON selected text */
+  font-size: 17px;
   font-weight: 600;
   cursor: pointer;
+  z-index: 5;
+  transition: 0.3s ease;
+}
+
+/* ACTIVE BUTTON */
+.menu-bar-container button.active {
+  background: #ff2f86; /* pink */
+  color: white;
+}
+
+.menu-bar-container button.active:hover {
+  background: #ff2f86; /* pink */
+}
+
+
+/* Hover effect */
+.menu-bar-container button:hover {
+  background: #ffb7d3;
 }

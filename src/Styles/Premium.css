@@ -1,0 +1,223 @@
+/* Wrapper background */
+.premium-wrapper {
+  background: #ffeef3;
+  min-height: 100vh;
+  padding-top: 100px; /* space below navbar */
+}
+
+/* Header */
+.premium-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+
+.premium-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #c2185b;
+}
+
+.premium-subtitle {
+  font-size: 1.4rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Plans container */
+.plans-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding-top: 0px;
+  padding-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+/* Plan Card */
+.plan-card {
+  width: 330px;
+  background: white;
+  border-radius: 20px;
+  padding: 35px 25px;
+  box-shadow: 0 10px 25px rgba(194, 24, 91, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(194, 24, 91, 0.3);
+}
+
+/* Titles */
+.plan-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.plan-title.free {
+  color: #ff4f9a;
+}
+
+.plan-title.premium {
+  color: #c2185b;
+}
+
+.plan-price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Features */
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.plan-features li {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+/* Buttons */
+.plan-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.free-btn {
+  background: #c2185b;
+  color: #fff;
+}
+
+.free-btn:hover {
+  background: #ff8fb9;
+}
+
+.premium-btn {
+  background: #c2185b;
+  color: #fff;
+}
+
+.premium-btn:hover {
+  background: #a3154d;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .plans-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+  }
+}
+
+/* ---------------------- AI Help Section ---------------------- */
+.ai-help-section {
+  background: linear-gradient(
+        135deg,
+        #ff0055 0%,
+        #ff00b7 35%,
+        #ff0073 80%
+    );
+  padding: 90px 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.ai-help-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.ai-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #ffd2e8;
+}
+
+.ai-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.ai-desc {
+  font-size: 1.2rem;
+  color: #ffe3f1;
+  max-width: 850px;
+  margin: auto;
+  line-height: 1.7;
+  margin-bottom: 50px;
+}
+
+/* Grid */
+.ai-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  margin-top: 20px;
+}
+
+/* Cards */
+.ai-feature-card {
+  background: white;
+  color: #333;
+  padding: 25px 20px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ai-feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(255, 79, 154, 0.35);
+}
+
+.ai-feature-card h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #c2185b;
+}
+
+.ai-feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #000000;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .ai-title {
+    font-size: 2.4rem;
+  }
+
+  .ai-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-feature-card {
+    text-align: center;
+  }
+}

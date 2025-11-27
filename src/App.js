@@ -9,7 +9,7 @@ import Payment from "./Pages/Payment";
 import Platform from "./Pages/Platform";
 import Premium from "./Pages/Premium";
 import Profile from "./Pages/Profile";
-import Story from "./Pages/Story";
+import StoryPage from "./Pages/StoryPage";
 
 import ProtectedRoute from "./Components/ProtectedRoute";
 
@@ -54,8 +54,8 @@ function App() {
         />
 
         <Route
-          path="/Story"
-          element={<ProtectedRoute><Story /></ProtectedRoute>}
+          path="/StoryPage"
+          element={<ProtectedRoute><StoryPage /></ProtectedRoute>}
         />
 
         {/* 404 */}

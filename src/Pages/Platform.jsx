@@ -27,13 +27,26 @@ const Platform = () => {
 
       <div className="profile-card-wrapper">
         <div className="profile-card">
-          <img src={profiles[index].img} />
-          <h2>{profiles[index].name}, {profiles[index].age}</h2>
 
-          <div className="swipe-buttons">
-            <button className="reject" onClick={handleSwipeLeft}>👎</button>
-            <button className="accept" onClick={handleSwipeRight}>❤️</button>
+          {/* LEFT IMAGE */}
+          <div className="profile-left">
+            <img src={profiles[index].img} alt="profile" />
           </div>
+
+          {/* RIGHT DETAILS */}
+          <div className="profile-right">
+            <h2>{profiles[index].name}, {profiles[index].age}</h2>
+
+            <p className="bio">
+              Looking for meaningful connections 💕  
+            </p>
+
+            <div className="swipe-buttons">
+              <button className="reject" onClick={handleSwipeLeft}>👎</button>
+              <button className="accept" onClick={handleSwipeRight}>❤️</button>
+            </div>
+          </div>
+
         </div>
       </div>
 
