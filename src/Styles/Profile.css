@@ -1,0 +1,165 @@
+.profile-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffe3f0;
+  padding-top: 85px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-wrapper {
+  width: 92%;
+  max-width: 680px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 80px;
+}
+
+/* ------------------ GALLERY ------------------ */
+.gallery-container {
+  width: 100%;
+}
+
+.gallery-main {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.gallery-thumbs img {
+  width: 30%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ------------------ HEADER ------------------ */
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.profile-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ff2f86;
+}
+
+.verified-badge {
+  background: #38c172;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+/* --------------- LOCATION -------------------- */
+.profile-location {
+  color: #444;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+/* --------------- MATCH SCORE ------------------ */
+.match-score {
+  margin-top: 10px;
+  font-size: 17px;
+  color: #ff2f86;
+  font-weight: 600;
+}
+
+/* --------------- ZODIAC ------------------------ */
+.zodiac-box {
+  margin-top: 8px;
+  display: inline-block;
+  padding: 6px 16px;
+  background: white;
+  color: #ff2f86;
+  font-weight: 600;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* ------------------ SECTIONS ------------------ */
+.profile-section {
+  background: white;
+  padding: 18px 22px;
+  margin: 18px 0;
+  border-radius: 18px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+}
+
+.section-heading {
+  font-size: 19px;
+  font-weight: 700;
+  color: #ff2f86;
+  margin-bottom: 8px;
+}
+
+.section-text {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ------------------ TAGS ---------------------- */
+.tags-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 8px 14px;
+  background: #ffe6f3;
+  color: #ff2f86;
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+.tag.interest {
+  background: #ffb5d9;
+  color: white;
+}
+
+/* ---------------- BASIC INFO ------------------ */
+.info-list p {
+  font-size: 15px;
+  margin: 6px 0;
+  color: #333;
+}
+
+/* ---------------- MESSAGE BUTTON --------------- */
+.message-btn {
+  width: 100%;
+  background: #ff2f86;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 17px;
+  margin-top: 15px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(255, 0, 120, 0.3);
+}
+.message-btn:hover {
+  transform: scale(1.03);
+}
+
+/* ---------------- LOADING --------------------- */
+.profile-loading {
+  padding-top: 180px;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}

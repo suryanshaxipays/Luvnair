@@ -49,14 +49,12 @@ function App() {
         />
 
         <Route
-          path="/Profile"
-          element={<ProtectedRoute><Profile /></ProtectedRoute>}
-        />
-
-        <Route
           path="/StoryPage"
           element={<ProtectedRoute><StoryPage /></ProtectedRoute>}
         />
+
+        <Route path="/Profile" element={<Profile />} />
+
 
         {/* 404 */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
