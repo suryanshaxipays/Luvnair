@@ -2,56 +2,106 @@
   width: 100%;
   min-height: 100vh;
   background: #ffe3f0;
-  padding-top: 90px;
-  padding-bottom: 100px;
+  padding-top: 95px;
+  padding-bottom: 110px;
 }
 
+/* PAGE TITLES */
 .matches-title {
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   color: #ff2f86;
-  font-weight: 700;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.matches-subtitle {
+  text-align: center;
+  color: #444;
+  font-size: 16px;
   margin-bottom: 30px;
 }
 
+/* GRID */
 .matches-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
+  gap: 25px;
   width: 90%;
   margin: auto;
 }
 
+/* MATCH CARD */
 .match-card {
   background: white;
-  padding: 15px;
-  border-radius: 18px;
+  border-radius: 20px;
+  padding: 12px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-  transition: 0.2s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  transition: 0.25s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
 }
 
 .match-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  border-color: #ff2f86;
 }
 
-.match-card img {
+/* IMAGE WRAPPER WITH GRADIENT BORDER */
+.match-img-wrapper {
   width: 100%;
   height: 260px;
-  object-fit: cover;
-  border-radius: 15px;
+  border-radius: 18px;
+  padding: 3px;
+  background: linear-gradient(135deg, #ff2f86, #ff8ac5);
 }
 
+.match-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+/* NAME */
 .match-card h3 {
-  margin: 12px 0;
+  margin: 14px 0 6px 0;
+  font-size: 19px;
+  font-weight: 700;
   color: #333;
 }
 
-.match-card button {
+/* LOCATION */
+.match-location {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #666;
+}
+
+/* CHAT BUTTON */
+.chat-btn {
+  width: 100%;
+  padding: 12px 0;
   background: #ff2f86;
   color: white;
-  padding: 10px 18px;
+  font-size: 16px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 4px 10px rgba(255, 0, 120, 0.3);
+}
+
+.chat-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(255, 0, 120, 0.4);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .match-img-wrapper {
+    height: 230px;
+  }
 }
