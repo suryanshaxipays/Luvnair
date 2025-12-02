@@ -43,6 +43,7 @@
 
 .nav-center a:hover {
   color: #ffd3e2;
+  scale: (1.2);
 }
 
 /* ---------- Login Button ---------- */
@@ -220,9 +221,9 @@
 
 .floating-navbar {
   opacity: 0;
-  transform: translate(-50%, -40px);   /* start slightly above */
+  transform: translate(-50%, -40px);   
   animation: navbarSlideIn 0.8s ease-out forwards;
-  animation-delay: 0.4s;                /* delay so it appears after splash */
+  animation-delay: 0.4s;               
 }
 
 @keyframes navbarSlideIn {

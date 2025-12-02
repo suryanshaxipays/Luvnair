@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import "../../Styles/AboutUs.css";
+import HeartArrow from "../../Assets/heartarrow.png";
 
-// Import images
+
+
 import A from "../../Assets/A.jpg";
 import B from "../../Assets/B.jpg";
 import C from "../../Assets/C.jpg";
@@ -61,8 +63,9 @@ const AboutUs = () => {
 
           {/* Moving Arrow */}
           <div className="timeline-arrow" ref={arrowRef}>
-            ▼
-          </div>
+  <img src={HeartArrow} alt="Arrow" className="heart-arrow-img" />
+</div>
+
         </div>
 
         <div className="steps">

@@ -25,8 +25,7 @@ const Hero = () => {
         </h1>
 
         <p className="hero-subtitle">
-          Forget endless swipes and shallow matches. Meet people who actually
-          resonate with your personality, energy, and intentions.
+         Discover connections that matter. Meet people who see you, value your heart, and share the spark that makes love meaningful.
         </p>
 
         <Link to="/Platform" className="btn btn-primary">

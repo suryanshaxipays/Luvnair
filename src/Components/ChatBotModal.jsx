@@ -54,7 +54,7 @@ Now reply to the user in a loving, sweet, helpful tone.`;
 
 
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi love ❤️ How can I help you today?" },
+    { sender: "bot", text: "Hi love How can I help you today?" },
   ]);
 
   const [input, setInput] = useState("");
@@ -99,14 +99,14 @@ Now reply to the user in a loving, sweet, helpful tone.`;
 
       let botReply =
         data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Sorry love, I didn’t understand that ❤️";
+        "Sorry love, I didn’t understand that";
 
       setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
     } catch (error) {
       console.error(error);
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "Network issue baby 💔 Try again…" },
+        { sender: "bot", text: "Network issue baby, Try again…" },
       ]);
     }
 

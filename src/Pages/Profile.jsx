@@ -144,7 +144,7 @@ const Profile = () => {
           className="message-btn"
           onClick={() => navigate(`/Chat?id=${person.login.uuid}`)}
         >
-          💬 Message Her
+          Message Her
         </button>
 
       </div>

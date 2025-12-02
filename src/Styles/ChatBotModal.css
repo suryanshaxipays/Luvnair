@@ -1,8 +1,8 @@
 /* Overlay */
 .chatbot-modal-overlay {
     position: fixed;
-    bottom: 30px;         /* ⬅️ Space from bottom */
-    right: 30px;          /* ⬅️ Space from right */
+    bottom: 30px;         
+    right: 30px;          
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;

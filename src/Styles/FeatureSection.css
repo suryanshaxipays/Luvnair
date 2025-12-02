@@ -5,7 +5,7 @@
   --color-text-dark: #4a4a4a; /* Updated paragraph color */
   --color-text-light: #4a4a4a; /* Unified text tone */
   --color-white: #ffffff;
-  --color-shadow: rgba(194, 24, 91, 0.25); 
+  --color-shadow: rgba(194, 24, 91, 0.25);
   --border-radius-pill: 50px;
   --border-radius-card: 16px;
   --transition-speed: 0.3s;
@@ -32,14 +32,14 @@
 }
 
 .feature-heading {
-  font-size: 3.5rem;            /* Matches About Us main heading */
+  font-size: 3.5rem; 
   color: var(--color-primary);
   margin-bottom: 10px;
   font-weight: 700;
 }
 
 .feature-subheading {
-  font-size: 1.3rem;            /* Same as About section paragraph */
+  font-size: 1.3rem; 
   color: var(--color-text-dark);
   max-width: 700px;
   margin: 0 auto;
@@ -54,6 +54,7 @@
 }
 
 .pill-bar {
+  position: relative; 
   display: flex;
   padding: 8px;
   background-color: rgba(255, 255, 255, 0.7);
@@ -62,6 +63,19 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
+  text-align: center;
+}
+
+/* Sliding Background */
+.pill-slider {
+  position: absolute;
+  transform: translateY(-50%);
+  height: 38px; 
+  max-width: 150px;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-pill);
+  transition: all 0.35s ease;
+  z-index: 0;
 }
 
 /* Hide scrollbar */
@@ -74,17 +88,21 @@
 }
 
 .pill {
+  position: relative; 
+  z-index: 2;
   white-space: nowrap;
   padding: 10px 20px;
   margin: 0 5px;
   border: none;
   background-color: transparent;
   color: var(--color-text-dark);
-  font-size: 1.1rem;             /* Slightly larger to match About Us tone */
+  font-size: 1.1rem; 
   font-weight: 600;
   cursor: pointer;
   border-radius: var(--border-radius-pill);
-  transition: background-color var(--transition-speed), color var(--transition-speed), box-shadow var(--transition-speed);
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed), box-shadow var(--transition-speed);
+    text-align: center;
 }
 
 .pill:hover:not(.active) {
@@ -92,9 +110,11 @@
 }
 
 .pill.active {
-  background-color: var(--color-primary);
+  background-color: transparent !important; 
   color: var(--color-white);
-  box-shadow: 0 4px 10px var(--color-shadow);
+  box-shadow: none;
+      text-align: center;
+
 }
 
 /* Feature Card Styling */
@@ -114,10 +134,6 @@
   width: 100%;
   transition: transform var(--transition-speed);
   height: 62vh;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
 }
 
 /* Image Column */
@@ -144,7 +160,7 @@
 
 /* Match About Us title */
 .feature-card-title {
-  font-size: 2rem;             /* Same as About section h3 */
+  font-size: 2rem; 
   color: var(--color-primary);
   margin-top: 0;
   margin-bottom: 15px;
@@ -153,7 +169,7 @@
 
 /* Short bold text */
 .feature-card-short-desc {
-  font-size: 1.3rem;           /* Matches About Us paragraph */
+  font-size: 1.3rem; 
   color: var(--color-text-dark);
   font-weight: 600;
   margin-bottom: 20px;
@@ -161,14 +177,13 @@
 
 /* Long description */
 .feature-card-long-desc {
-  font-size: 1.3rem;           /* Matches About text p */
+  font-size: 1.3rem; 
   color: var(--color-text-dark);
   line-height: 1.6;
   font-weight: 500;
 }
 
 /* --- Responsiveness (Mobile First) --- */
-
 @media (max-width: 900px) {
   .feature-section {
     padding: 60px 0;
@@ -224,5 +239,3 @@
     padding: 20px;
   }
 }
-
-

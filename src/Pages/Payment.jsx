@@ -190,7 +190,7 @@ const Payment = () => {
 
         {showSuccess && (
           <div className="success-box">
-            Payment Successful! Enjoy your Premium Access 💖
+            Payment Successful! Enjoy your Premium Access
           </div>
         )}
       </div>

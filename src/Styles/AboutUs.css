@@ -4,7 +4,6 @@
   padding: 80px 0;
   position: relative;
   overflow: hidden;
-  /* Removed min-height to let content dictate size, helps performance */
 }
 
 .about-heading {
@@ -43,8 +42,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 0%; /* Default start */
-  /* REMOVED transition here to make scroll instant and non-laggy */
+  height: 0%; 
 }
 
 .timeline-arrow {
@@ -55,7 +53,7 @@
   font-size: 28px;
   margin-top: -15px;
   z-index: 2;
-  top: 0%; /* Default start */
+  top: 0%; 
 }
 
 /* ---------------- Steps ---------------- */
@@ -70,7 +68,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 150px;
-  /* REMOVED: opacity, transition, will-change */
+  
 }
 
 /* REMOVED: .step.show class */
@@ -129,7 +127,7 @@
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(194, 24, 91, 0.15);
-  /* REMOVED: will-change (saves memory) */
+  
 }
 
 
@@ -163,4 +161,11 @@
     max-height: 300px;
     width: 100%;
   }
+}
+
+
+.heart-arrow-img {
+  width: 28px;       
+  height: 33px;
+  display: block;
 }

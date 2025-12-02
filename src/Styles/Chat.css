@@ -9,7 +9,7 @@
 /* MAIN CONTAINER */
 .chat-container {
   display: flex;
-  height: calc(100vh - 190px); /* after navbar + menu bar */
+  height: calc(100vh - 190px); 
   margin-top: 80px;
   margin-bottom: 80px;
 }

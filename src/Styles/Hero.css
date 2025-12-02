@@ -217,9 +217,9 @@
 
 .hero-content {
   opacity: 0;
-  transform: translateY(40px);   /* start slightly down */
+  transform: translateY(40px);   
   animation: heroSlideUp 0.9s ease-out forwards;
-  animation-delay: 0.6s;         /* Starts after navbar animation */
+  animation-delay: 0.6s;         
 }
 
 @keyframes heroSlideUp {

@@ -2,7 +2,7 @@ import '../../Styles/Testimonials.css';
 import { useNavigate } from "react-router-dom";
 
 
-// ✅ Import images
+// Import images
 import Couple1 from "../../Assets/Couple1.jpg";
 import Couple2 from "../../Assets/Couple2.jpg";
 import Couple3 from "../../Assets/Couple3.jpg";
@@ -65,7 +65,7 @@ const Testimonials = () => {
                   <p className="person-name">{story.name}</p>
                 </div>
 
-                {/* ⭐ Real image */}
+                {/*  Real image */}
                 <div className="image-wrapper">
                   <img 
                     src={story.image} 

@@ -5,16 +5,15 @@ import "../Styles/Chat.css";
 import femaleData from "../Data/female.json";
 
 const Chat = () => {
-
   const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 
-  // PERSONA generator for matches 
+  // PERSONA generator for matches
   const personaDescriptions = [
     "a sweet, shy girl who replies softly and warmly",
     "a bold, confident woman who speaks playfully",
     "a calm, mature woman who talks with depth",
     "a flirty, romantic girl who uses cute emojis",
-    "an intelligent, soft-spoken woman"
+    "an intelligent, soft-spoken woman",
   ];
 
   const people = femaleData.results.slice(0, 10).map((u, index) => ({
@@ -23,10 +22,8 @@ const Chat = () => {
     age: u.dob.age,
     image: u.picture.large,
     personality: personaDescriptions[index % personaDescriptions.length],
-    lastMessage: "Say hi 👋",
-    messages: [
-      { from: "them", text: "Hey! 😊" }
-    ]
+    lastMessage: "Say hi",
+    messages: [{ from: "them", text: "Hey!" }],
   }));
 
   const [activeChat, setActiveChat] = useState(null);
@@ -79,14 +76,13 @@ User says: ${text}
 
       let botReply =
         data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Aww sorry, I didn’t get that ❤️";
+        "Aww sorry, I didn’t get that";
 
       activeChat.messages.push({ from: "them", text: botReply });
-
     } catch (err) {
       activeChat.messages.push({
         from: "them",
-        text: "Network issue baby 💔 Try again…"
+        text: "Network issue baby, Try again…",
       });
     }
 
@@ -98,16 +94,16 @@ User says: ${text}
       <Navbar_2 />
 
       <div className="chat-container">
-
         {/* LEFT LIST */}
         <div className="left-people-list">
-          <h2 className="side-title">Matches ❤️</h2>
+          <h2 className="side-title">Matches</h2>
 
           <div className="scroll-area">
             {people.map((user) => (
               <div
                 key={user.id}
-                className={`person-card ${activeChat?.id === user.id ? "active" : ""}`}
+                className={`person-card ${activeChat?.id === user.id ? "active" : ""
+                  }`}
                 onClick={() => openChat(user)}
               >
                 <img src={user.image} className="person-avatar" />
@@ -122,37 +118,34 @@ User says: ${text}
 
         {/* RIGHT SIDE CHAT */}
         <div className="right-chat-area">
-
           {!activeChat && (
             <div className="empty-chat-screen">
-              <h2>Start a Conversation 💬</h2>
+              <h2>Start a Conversation</h2>
               <p>Select someone from your matches</p>
             </div>
           )}
 
           {activeChat && (
             <div className="chat-screen">
-              
               <div className="chat-header">
                 <img src={activeChat.image} />
                 <div>
                   <h3>{activeChat.name}</h3>
-                  <span>Online 🟢</span>
+                  <span>Online</span>
                 </div>
               </div>
 
               <div className="messages-area">
                 {activeChat.messages.map((msg, i) => (
-                  <div key={i} className={`message ${msg.from === "me" ? "me" : "them"}`}>
+                  <div
+                    key={i}
+                    className={`message ${msg.from === "me" ? "me" : "them"}`}
+                  >
                     {msg.text}
                   </div>
                 ))}
 
-                {isTyping && (
-                  <div className="message them typing">
-                    Typing…
-                  </div>
-                )}
+                {isTyping && <div className="message them typing">Typing…</div>}
               </div>
 
               <div className="chat-input-box">
@@ -165,12 +158,9 @@ User says: ${text}
                 />
                 <button onClick={sendMessage}>Send</button>
               </div>
-
             </div>
           )}
-
         </div>
-
       </div>
 
       <Menu_Bar />

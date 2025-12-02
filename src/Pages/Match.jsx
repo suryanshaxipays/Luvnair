@@ -14,7 +14,7 @@ const Matches = () => {
     <div className="matches-page-container">
       <Navbar_2 />
 
-      <h2 className="matches-title">Your Matches ❤️</h2>
+      <h2 className="matches-title">Your Matches</h2>
       <p className="matches-subtitle">These people liked you back! Start a conversation ✨</p>
 
       <div className="matches-grid">
@@ -36,7 +36,7 @@ const Matches = () => {
             </p>
 
             {/* BUTTON */}
-            <button className="chat-btn"  onClick={() => navigate("/chat")}>💬 Chat Now</button>
+            <button className="chat-btn"  onClick={() => navigate("/chat")}>Chat Now</button>
           </div>
         ))}
       </div>

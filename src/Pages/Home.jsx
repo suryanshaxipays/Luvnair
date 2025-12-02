@@ -12,7 +12,7 @@ import Footer from "../Components/Footer";
 import Arrow from "../Assets/Arrow.png";
 import ChatIcon from "../Assets/chatbot.png";
 import ChatBotModal from "../Components/ChatBotModal";
-import Logo from "../Assets/Logo.png"; // YOUR LOGO
+import Logo from "../Assets/Logo.png";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
