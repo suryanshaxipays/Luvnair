@@ -1,3 +1,52 @@
+/* ==========================================
+   PROFESSIONAL LOGO INTRO ANIMATION
+==========================================*/
+
+.logo-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+
+  background: linear-gradient(135deg, #ffbdd8, #ff8ab8); /* soft light pink */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: introFadeOut 0.8s ease forwards;
+  animation-delay: 1.1s;
+}
+
+.intro-logo {
+  width: 150px; /* adjust logo size */
+  opacity: 0;
+  transform: scale(0.7);
+  animation: logoScale 1.2s ease forwards;
+}
+
+/* Logo scale and fade in */
+@keyframes logoScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Background fade-out */
+@keyframes introFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
 /* ===== Scroll To Top Button (Dating Theme Pink) ===== */
 .scroll-to-top {
   position: fixed;
@@ -90,3 +139,4 @@
   width: 28px;
   height: 28px;
 }
+

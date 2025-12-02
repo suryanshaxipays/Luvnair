@@ -17,7 +17,7 @@ const Platform = () => {
 
   const [index, setIndex] = useState(0);
   const [swipeDirection, setSwipeDirection] = useState("");
-  const [swipeEmoji, setSwipeEmoji] = useState("");
+  const [swipeLabel, setSwipeLabel] = useState("");
 
   const currentProfile = profiles[index];
   const aboutText = aboutTemplates[index % aboutTemplates.length];
@@ -25,31 +25,34 @@ const Platform = () => {
   const nextProfile = () => {
     setTimeout(() => {
       setSwipeDirection("");
-      setSwipeEmoji("");
+      setSwipeLabel("");
       if (index < profiles.length - 1) setIndex(index + 1);
     }, 350);
   };
 
   const handleReject = () => {
-    setSwipeEmoji("💔");
+    setSwipeLabel("PASS");
     setSwipeDirection("left");
     nextProfile();
   };
 
   const handleAccept = () => {
-    setSwipeEmoji("😍");
     setSwipeDirection("right");
+    setSwipeLabel("LIKE");
 
     const div = document.createElement("div");
     div.className = "super-match-popup";
     div.innerHTML = `
-      <div class="match-burst">💖✨💘</div>
-      <h1>It's a Match!</h1>
-      <p>You both liked each other 🎉😍</p>
+      <div class="match-glow"></div>
+      <div class="match-circle"></div>
+      <div class="match-particles"></div>
+
+      <h1 class="match-title">It’s a Match</h1>
+      <p class="match-sub">You both liked each other</p>
     `;
     document.body.appendChild(div);
 
-    setTimeout(() => div.remove(), 2000);
+    setTimeout(() => div.remove(), 1800);
 
     nextProfile();
   };
@@ -62,11 +65,11 @@ const Platform = () => {
 
         {/* MAIN CARD */}
         <div className={`profile-card ${swipeDirection}`}>
-          
-          {/* SWIPE EMOJI OVERLAY */}
-          {swipeEmoji && (
-            <div className={`swipe-emoji ${swipeDirection}`}>
-              {swipeEmoji}
+
+          {/* SWIPE LABEL */}
+          {swipeLabel && (
+            <div className={`swipe-label ${swipeDirection}`}>
+              {swipeLabel}
             </div>
           )}
 
@@ -83,7 +86,7 @@ const Platform = () => {
             </h2>
 
             <p className="location">
-              🌍 {currentProfile.location.city}, {currentProfile.location.country}
+              {currentProfile.location.city}, {currentProfile.location.country}
             </p>
 
             <h3 className="title">About Me</h3>
@@ -98,15 +101,14 @@ const Platform = () => {
           </div>
         </div>
 
-        {/* BOTTOM BUTTONS BAR */}
+        {/* BOTTOM BUTTONS */}
         <div className="bottom-buttons">
           <button className="bottom-btn reject" onClick={handleReject}>
-            👎 Not Interested
+            Not Interested
           </button>
           <button className="bottom-btn accept" onClick={handleAccept}>
-            ❤️ Interested
+            Interested
           </button>
-
         </div>
 
       </div>

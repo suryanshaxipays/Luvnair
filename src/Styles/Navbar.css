@@ -215,3 +215,23 @@
 .dropdown-logout:hover {
   background: #c21752;
 }
+
+/* ========= NAVBAR SLIDE-IN ANIMATION ========= */
+
+.floating-navbar {
+  opacity: 0;
+  transform: translate(-50%, -40px);   /* start slightly above */
+  animation: navbarSlideIn 0.8s ease-out forwards;
+  animation-delay: 0.4s;                /* delay so it appears after splash */
+}
+
+@keyframes navbarSlideIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
