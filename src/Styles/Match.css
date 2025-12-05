@@ -105,3 +105,114 @@
     height: 230px;
   }
 }
+
+/* PREMIUM MATCH CARD */
+.premium-match {
+  filter: blur(3px);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.premium-match:hover {
+  transform: translateY(-4px);
+}
+
+/* PRO ICON */
+.pro-icon-match {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+/* PREMIUM MODAL - reuse the same style as chat modal */
+.premium-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.premium-content {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: modalPop 0.3s ease-out;
+}
+
+@keyframes modalPop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.premium-content h2 {
+  font-size: 26px;
+  color: #ff2f86;
+  margin-bottom: 12px;
+}
+
+.premium-content p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.premium-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.premium-btn {
+  background: #ff2f86;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.premium-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(255, 47, 134, 0.4);
+}
+
+.premium-close {
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.premium-close:hover {
+  transform: scale(1.05);
+  background: #ddd;
+}

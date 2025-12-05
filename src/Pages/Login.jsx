@@ -35,7 +35,7 @@ const Login = () => {
     dispatch(login(form));
 
     if (!authError) {
-      navigate("/Profile");
+      navigate("/profile?id=me");
     }
   };
 

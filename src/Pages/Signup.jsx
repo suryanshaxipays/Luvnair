@@ -39,7 +39,7 @@ const Signup = () => {
     if (err) return setError(err);
 
     dispatch(signup(form));
-    navigate("/Profile");
+    navigate("/profile?id=me");
   };
 
   return (

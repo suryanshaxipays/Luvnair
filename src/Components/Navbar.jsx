@@ -57,8 +57,8 @@ const Navbar = () => {
             {/* ---------- Dropdown Menu ---------- */}
             {openMenu && (
               <div className="user-dropdown">
-                <div className="dropdown-header">
-                  <img src={UserIcon} alt="user" className="dropdown-user-img" />
+                <div className="dropdown-header" >
+                  <img src={UserIcon} alt="user" className="dropdown-user-img" onClick={()=>navigate("/profile?id=me")}/>
                   <div>
                     <h4>hey {user?.name}</h4>
                     <p>{user?.email}</p>

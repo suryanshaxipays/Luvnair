@@ -146,6 +146,10 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  cursor: pointer;
+}
+.dropdown-user-img:hover {
+  transform: scale(1.03);
 }
 
 .dropdown-header h4 {

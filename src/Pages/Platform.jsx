@@ -2,11 +2,9 @@ import { useState } from "react";
 import Navbar_2 from "../Components/Navbar_2";
 import Menu_bar from "../Components/Menu_bar";
 import "../Styles/Platform.css";
-import femaleData from "../Data/female.json";
+import profiles from "../Data/profiles";
 
 const Platform = () => {
-  const profiles = femaleData.results;
-
   const aboutTemplates = [
     "I’m a warm, caring and fun-loving person who believes in meaningful connections. I enjoy deep conversations, simple moments, and building something real with someone emotionally mature.",
     "Independent, confident and emotionally stable. I enjoy cafés, spontaneous trips and good energy. Looking for someone loyal, respectful and genuinely invested.",
@@ -18,6 +16,7 @@ const Platform = () => {
   const [index, setIndex] = useState(0);
   const [swipeDirection, setSwipeDirection] = useState("");
   const [swipeLabel, setSwipeLabel] = useState("");
+  const [likeCount, setLikeCount] = useState(0);
 
   const currentProfile = profiles[index];
   const aboutText = aboutTemplates[index % aboutTemplates.length];
@@ -30,16 +29,7 @@ const Platform = () => {
     }, 350);
   };
 
-  const handleReject = () => {
-    setSwipeLabel("PASS");
-    setSwipeDirection("left");
-    nextProfile();
-  };
-
-  const handleAccept = () => {
-    setSwipeDirection("right");
-    setSwipeLabel("LIKE");
-
+  const showMatchPopup = () => {
     const div = document.createElement("div");
     div.className = "super-match-popup";
     div.innerHTML = `
@@ -51,8 +41,25 @@ const Platform = () => {
       <p class="match-sub">You both liked each other</p>
     `;
     document.body.appendChild(div);
+    setTimeout(() => div.remove(), 2500);
+  };
 
-    setTimeout(() => div.remove(), 1800);
+  const handleReject = () => {
+    setSwipeDirection("left");
+    setSwipeLabel("PASS");
+    nextProfile();
+  };
+
+  const handleAccept = () => {
+    setSwipeDirection("right");
+    setSwipeLabel("LIKE");
+
+    const newLikeCount = likeCount + 1;
+    setLikeCount(newLikeCount);
+
+    if (newLikeCount % 3 === 0) {
+      showMatchPopup();
+    }
 
     nextProfile();
   };
@@ -62,10 +69,8 @@ const Platform = () => {
       <Navbar_2 />
 
       <div className="profile-card-wrapper">
-
         {/* MAIN CARD */}
         <div className={`profile-card ${swipeDirection}`}>
-
           {/* SWIPE LABEL */}
           {swipeLabel && (
             <div className={`swipe-label ${swipeDirection}`}>
@@ -75,28 +80,61 @@ const Platform = () => {
 
           {/* LEFT IMAGE */}
           <div className="profile-left">
-            <img src={currentProfile.picture.large} alt="profile" />
+            <img src={currentProfile.image} alt={currentProfile.name} />
           </div>
 
           {/* RIGHT DETAILS */}
           <div className="profile-right">
             <h2>
-              {currentProfile.name.first} {currentProfile.name.last},{" "}
-              {currentProfile.dob.age}
+              {currentProfile.name}, {currentProfile.age}
             </h2>
 
-            <p className="location">
-              {currentProfile.location.city}, {currentProfile.location.country}
-            </p>
+            <p className="location">{currentProfile.city}</p>
 
             <h3 className="title">About Me</h3>
-            <p className="bio">{aboutText}</p>
+            <p className="bio">{currentProfile.about_me || aboutText}</p>
 
-            <h3 className="title">More Details</h3>
+            <h3 className="title">Quick Facts</h3>
             <ul className="details-list">
-              <li><strong>Email:</strong> {currentProfile.email}</li>
-              <li><strong>Phone:</strong> {currentProfile.phone}</li>
-              <li><strong>Nationality:</strong> {currentProfile.nat}</li>
+              {Object.entries(currentProfile.quick_facts).map(([key, value]) => (
+                <li key={key}>
+                  <strong>{key.replace("_", " ")}:</strong> {value}
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="title">Intentions</h3>
+            <ul className="details-list">
+              {Object.entries(currentProfile.intentions).map(([key, value]) => (
+                <li key={key}>
+                  <strong>{key.replace("_", " ")}:</strong> {value}
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="title">Prompts</h3>
+            <ul className="prompts-list">
+              {currentProfile.prompts.map((p, idx) => (
+                <li key={idx}>
+                  <strong>{p.question}:</strong> {p.answer}
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="title">Interests</h3>
+            <div className="interests">
+              {currentProfile.interests.map((i, idx) => (
+                <span key={idx}>{i}</span>
+              ))}
+            </div>
+
+            <h3 className="title">Extras</h3>
+            <ul className="extras-list">
+              {Object.entries(currentProfile.extras).map(([key, value]) => (
+                <li key={key}>
+                  <strong>{key.replace("_", " ")}:</strong> {Array.isArray(value) ? value.join(", ") : value}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -110,7 +148,6 @@ const Platform = () => {
             Interested
           </button>
         </div>
-
       </div>
 
       <Menu_bar />

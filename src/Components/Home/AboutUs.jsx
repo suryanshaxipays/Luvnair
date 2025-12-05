@@ -19,7 +19,6 @@ const AboutUs = () => {
     const handleScroll = () => {
       if (!lineRef.current || !fillRef.current || !arrowRef.current) return;
 
-      // Use requestAnimationFrame for 60fps performance
       requestId = requestAnimationFrame(() => {
         const line = lineRef.current;
         const rect = line.getBoundingClientRect();

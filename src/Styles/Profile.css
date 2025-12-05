@@ -163,3 +163,40 @@
   font-size: 18px;
   color: #666;
 }
+.edit-btn {
+  background: #ff2f86;
+  color: white;
+  padding: 8px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  float: right;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.edit-input,
+.edit-textarea,
+select.edit-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.edit-textarea {
+  min-height: 90px;
+}
+
+.upload-input {
+  margin-top: 15px;
+}
+
+.review-msg {
+  margin-top: 8px;
+  color: #ff2f86;
+  font-size: 14px;
+  font-weight: 600;
+}

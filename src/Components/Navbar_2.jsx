@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../slices/authSlice";
 import { useState, useEffect } from "react";
 import UserIcon from "../Assets/user.png";
+import proIcon from "../Assets/pro.png";
 
-// Import JSON data
-import femaleData from "../Data/female.json";
+import profiles from "../Data/profiles";
 
 const Navbar_2 = () => {
   const navigate = useNavigate();
@@ -14,43 +14,45 @@ const Navbar_2 = () => {
 
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
+  const isPremium = user?.isPremium;
 
   const [openMenu, setOpenMenu] = useState(false);
   const [search, setSearch] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/Login");
   };
 
-  // ---------- LIVE SEARCH ----------
   useEffect(() => {
-    if (!search.trim()) {
+    if (!search.trim() || !isPremium) {
       setFilteredResults([]);
       return;
     }
 
     const s = search.toLowerCase();
 
-    const results = femaleData.results.filter((person) => {
-      const fullName = `${person.name.first} ${person.name.last}`.toLowerCase();
-      const city = person.location.city.toLowerCase();
-      const country = person.location.country.toLowerCase();
-
-      return (
-        fullName.includes(s) ||
-        city.includes(s) ||
-        country.includes(s)
-      );
+    const results = profiles.filter((p) => {
+      const name = p.name.toLowerCase();
+      const city = p.city.toLowerCase();
+      return name.includes(s) || city.includes(s);
     });
 
-    setFilteredResults(results.slice(0, 8)); // limit
-  }, [search]);
+    setFilteredResults(results.slice(0, 8)); // show max 8 suggestions
+  }, [search, isPremium]);
 
-  // CLICK RESULT → Navigate to Matches page with profile info
+  const handleSearchChange = (e) => {
+    if (!isPremium) {
+      setShowPremiumModal(true);
+      return;
+    }
+    setSearch(e.target.value);
+  };
+
   const openProfile = (profile) => {
-   navigate("/Profile?id=" + profile.login.uuid);
+    navigate("/Profile?id=" + profile.id);
     setSearch("");
     setFilteredResults([]);
   };
@@ -70,10 +72,10 @@ const Navbar_2 = () => {
           placeholder="Search profiles, matches..."
           className="navbar2-search-input"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleSearchChange}
         />
 
-        {/* SEARCH RESULTS DROPDOWN */}
+        {/* SEARCH DROPDOWN */}
         {filteredResults.length > 0 && (
           <div className="search-dropdown">
             {filteredResults.map((p, i) => (
@@ -82,10 +84,10 @@ const Navbar_2 = () => {
                 key={i}
                 onClick={() => openProfile(p)}
               >
-                <img src={p.picture.thumbnail} />
+                <img src={p.image} alt="thumb" />
                 <div>
-                  <h4>{p.name.first} {p.name.last}</h4>
-                  <p>{p.location.city}, {p.location.country}</p>
+                  <h4>{p.name}</h4>
+                  <p>{p.city}</p>
                 </div>
               </div>
             ))}
@@ -110,8 +112,8 @@ const Navbar_2 = () => {
 
             {openMenu && (
               <div className="navbar2-user-dropdown">
-                <div className="dropdown-header">
-                  <img src={UserIcon} alt="user" className="dropdown-user-img" />
+                <div className="dropdown-header" >
+                  <img src={UserIcon} alt="user" className="dropdown-user-img" onClick={()=>navigate("/profile?id=me")}/>
                   <div>
                     <h4>Hey {user?.name}</h4>
                     <p>{user?.email}</p>
@@ -126,6 +128,34 @@ const Navbar_2 = () => {
           </div>
         )}
       </div>
+
+      {/* PREMIUM MODAL */}
+      {showPremiumModal && (
+        <div className="premium-modal">
+          <div className="premium-content">
+            <h2>Premium Feature</h2>
+            <p>
+              Searching profiles is a premium feature! Upgrade now to unlock
+              full search capabilities.
+            </p>
+            <div className="premium-buttons">
+              <button
+                onClick={() => navigate("/payment")}
+                className="premium-btn"
+              >
+                Become Premium
+              </button>
+              <button
+                onClick={() => setShowPremiumModal(false)}
+                className="premium-close"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

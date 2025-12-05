@@ -1,120 +1,258 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Navbar_2 from "../Components/Navbar_2";
-import femaleData from "../Data/female.json";
+import profiles from "../Data/profiles";
 import "../Styles/Profile.css";
 
 const Profile = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const id = new URLSearchParams(location.search).get("id");
+
+  const queryId = new URLSearchParams(location.search).get("id");
+  const { user } = useSelector((state) => state.auth);
 
   const [person, setPerson] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [reviewMessage, setReviewMessage] = useState("");
 
-  // Auto About
   const aboutGirls = [
-    "Soft-hearted romantic who loves affection, deep conversations & emotional connection 💗",
-    "Cheerful, expressive girl who believes in loyalty, real efforts & warmth ✨",
-    "Bubbly emotional soul who loves meaningful bonds & honest intentions 🌸",
-    "Sweet, feminine & caring — she falls for small gestures and sincerity 💕",
-    "Fun-loving, romantic, expressive — believes in magical chemistry 🌷" 
+    "Soft-hearted romantic who loves deep conversations and emotional warmth 💗",
+    "Cheerful, expressive soul who values honesty & affection ✨",
+    "Bubbly, emotional girl who loves meaningful bonds 🌸",
+    "Sweet, feminine & caring — she falls for small gestures 💕",
+    "Fun-loving, romantic, expressive — believes in magical chemistry 🌷"
   ];
 
-  // Personality tags
   const personalityTags = [
     "Loyal", "Romantic", "Funny", "Caring", "Adventurous",
     "Soft-spoken", "Ambitious", "Affectionate", "Calm", "Creative"
   ];
 
-  // Interests
   const interestOptions = [
     "Long drives", "Music", "Photography", "Reading", "Travel",
     "Dancing", "Coffee dates", "Fitness", "Beach walks", "Cooking"
   ];
 
-  // Random match %
   const matchScore = Math.floor(Math.random() * (97 - 82) + 82);
 
-  // Zodiac helper
-  const getZodiac = (dateStr) => {
-    const date = new Date(dateStr);
-    const d = date.getDate();
-    const m = date.getMonth() + 1;
+  /** IMAGE UPLOAD PREVIEW + SAVE */
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-    if ((m === 3 && d >= 21) || (m === 4 && d <= 19)) return "Aries ♈";
-    if ((m === 4 && d >= 20) || (m === 5 && d <= 20)) return "Taurus ♉";
-    if ((m === 5 && d >= 21) || (m === 6 && d <= 20)) return "Gemini ♊";
-    if ((m === 6 && d >= 21) || (m === 7 && d <= 22)) return "Cancer ♋";
-    if ((m === 7 && d >= 23) || (m === 8 && d <= 22)) return "Leo ♌";
-    if ((m === 8 && d >= 23) || (m === 9 && d <= 22)) return "Virgo ♍";
-    if ((m === 9 && d >= 23) || (m === 10 && d <= 22)) return "Libra ♎";
-    if ((m === 10 && d >= 23) || (m === 11 && d <= 21)) return "Scorpio ♏";
-    if ((m === 11 && d >= 22) || (m === 12 && d <= 21)) return "Sagittarius ♐";
-    if ((m === 12 && d >= 22) || (m === 1 && d <= 19)) return "Capricorn ♑";
-    if ((m === 1 && d >= 20) || (m === 2 && d <= 18)) return "Aquarius ♒";
-    return "Pisces ♓";
+    const imgURL = URL.createObjectURL(file);
+    setPreviewImage(imgURL);
+
+    // UPDATE PERSON DATA
+    setPerson((prev) => ({ ...prev, image: imgURL }));
+
+    setReviewMessage(
+      "Your photo is under review. We will make it live after checking our policy."
+    );
   };
 
+  /** LOAD PROFILE LOGIC */
   useEffect(() => {
-    if (!id) return;
-    const match = femaleData.results.find(p => p.login.uuid === id);
+    if (!queryId) return;
+
+    // MY PROFILE SECTION
+    if (queryId === "me") {
+      // 1️⃣ CHECK LOCAL STORAGE FIRST
+      const saved = localStorage.getItem("myProfile");
+      if (saved) {
+        setPerson(JSON.parse(saved));
+        return;
+      }
+
+      // 2️⃣ IF NOTHING FOUND → CREATE EMPTY TEMPLATE
+      const myProfile = {
+        id: "me",
+        name: user?.name || "",
+        email: user?.email || "",
+        age: "",
+        gender: "",
+        image: "",
+        city: "",
+        about: "",
+        personality: [],
+        interests: [],
+        quick_facts: {
+          job: "",
+          education: "",
+          lifestyle: "",
+          work_style: ""
+        }
+      };
+
+      setPerson(myProfile);
+      return;
+    }
+
+    // OTHER PROFILES FROM JSON
+    const idNum = Number(queryId);
+    const match = profiles.find((p) => p.id === idNum);
 
     if (match) {
-      match.about = aboutGirls[Math.floor(Math.random() * aboutGirls.length)];
-      match.personality = personalityTags.sort(() => 0.5 - Math.random()).slice(0, 5);
-      match.interests = interestOptions.sort(() => 0.5 - Math.random()).slice(0, 6);
-      match.zodiac = getZodiac(match.dob.date);
-      setPerson(match);
-    }
-  }, [id]);
+      const finalProfile = {
+        ...match,
+        about:
+          match.about_me ||
+          aboutGirls[Math.floor(Math.random() * aboutGirls.length)],
+        personality: personalityTags.sort(() => 0.5 - Math.random()).slice(0, 5),
+        interests: interestOptions.sort(() => 0.5 - Math.random()).slice(0, 6)
+      };
 
-  if (!person)
-    return <div className="profile-loading">Loading profile…</div>;
+      setPerson(finalProfile);
+    }
+  }, [queryId, user]);
+
+  if (!person) return <div className="profile-loading">Loading profile…</div>;
 
   return (
     <div className="profile-page-container">
       <Navbar_2 />
 
       <div className="profile-wrapper">
+        {/* EDIT BUTTON */}
+        {person.id === "me" && (
+          <button
+            className="edit-btn"
+            onClick={() => {
+              if (isEditing) {
+                // SAVE PROFILE TO LOCAL STORAGE
+                localStorage.setItem("myProfile", JSON.stringify(person));
+              }
+              setIsEditing(!isEditing);
+            }}
+          >
+            {isEditing ? "Save" : "Edit"}
+          </button>
+        )}
 
-        {/* GALLERY */}
+        {/* IMAGE SECTION */}
         <div className="gallery-container">
-          <img src={person.picture.large} className="gallery-main" />
-          
+          {previewImage || person.image ? (
+            <img
+              src={previewImage || person.image}
+              className="gallery-main"
+              alt="Profile"
+            />
+          ) : (
+            <div className="empty-image-box">No Image Added</div>
+          )}
+
+          {person.id === "me" && isEditing && (
+            <>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="upload-input"
+              />
+              {reviewMessage && <p className="review-msg">{reviewMessage}</p>}
+            </>
+          )}
         </div>
 
-        {/* NAME & VERIFIED */}
+        {/* NAME + AGE */}
         <div className="name-row">
-          <h1 className="profile-title">
-            {person.name.first} {person.name.last}, {person.dob.age}
-          </h1>
+          {isEditing ? (
+            <input
+              className="edit-input"
+              value={person.name}
+              onChange={(e) =>
+                setPerson({ ...person, name: e.target.value })
+              }
+            />
+          ) : (
+            <h1 className="profile-title">
+              {person.name} {person.age && `, ${person.age}`}
+            </h1>
+          )}
+
           <span className="verified-badge">✔ Verified</span>
         </div>
 
+        {/* AGE */}
+        {person.id === "me" && isEditing && (
+          <input
+            className="edit-input"
+            placeholder="Enter Age"
+            value={person.age}
+            onChange={(e) =>
+              setPerson({ ...person, age: e.target.value })
+            }
+          />
+        )}
+
+        {/* GENDER */}
+        {person.id === "me" && isEditing && (
+          <select
+            className="edit-input"
+            value={person.gender}
+            onChange={(e) =>
+              setPerson({ ...person, gender: e.target.value })
+            }
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        )}
+
         {/* LOCATION */}
         <p className="profile-location">
-          📍 {person.location.city}, {person.location.country}
+          📍{" "}
+          {isEditing ? (
+            <input
+              className="edit-input"
+              placeholder="Enter City"
+              value={person.city}
+              onChange={(e) =>
+                setPerson({ ...person, city: e.target.value })
+              }
+            />
+          ) : (
+            person.city || "Location not added"
+          )}
         </p>
 
         {/* MATCH SCORE */}
-        <div className="match-score">💘 Match Score: {matchScore}%</div>
+        {person.id !== "me" && (
+          <div className="match-score">💘 Match Score: {matchScore}%</div>
+        )}
 
-        {/* ZODIAC */}
-        <div className="zodiac-box">{person.zodiac}</div>
-
-        {/* ABOUT */}
+        {/* ABOUT SECTION */}
         <div className="profile-section">
-          <h2 className="section-heading">About Her</h2>
-          <p className="section-text">{person.about}</p>
+          <h2 className="section-heading">
+            {person.id === "me" ? "About Me" : "About Her"}
+          </h2>
+
+          {isEditing ? (
+            <textarea
+              className="edit-textarea"
+              value={person.about}
+              onChange={(e) =>
+                setPerson({ ...person, about: e.target.value })
+              }
+            />
+          ) : (
+            <p className="section-text">{person.about || "Not added yet"}</p>
+          )}
         </div>
 
-        {/* PERSONALITY TAGS */}
+        {/* PERSONALITY */}
         <div className="profile-section">
           <h2 className="section-heading">Personality</h2>
           <div className="tags-box">
-            {person.personality.map((tag, i) => (
-              <span className="tag" key={i}>{tag}</span>
-            ))}
+            {person.personality.length > 0
+              ? person.personality.map((tag, i) => (
+                  <span className="tag" key={i}>{tag}</span>
+                ))
+              : "Not added yet"}
           </div>
         </div>
 
@@ -122,31 +260,118 @@ const Profile = () => {
         <div className="profile-section">
           <h2 className="section-heading">Interests</h2>
           <div className="tags-box">
-            {person.interests.map((tag, i) => (
-              <span className="tag interest" key={i}>{tag}</span>
-            ))}
+            {person.interests.length > 0
+              ? person.interests.map((tag, i) => (
+                  <span className="tag interest" key={i}>{tag}</span>
+                ))
+              : "Not added yet"}
           </div>
         </div>
 
         {/* BASIC INFO */}
         <div className="profile-section">
           <h2 className="section-heading">Basic Information</h2>
+
           <div className="info-list">
-            <p><strong>Email:</strong> {person.email}</p>
-            <p><strong>Phone:</strong> {person.phone}</p>
-            <p><strong>State:</strong> {person.location.state}</p>
-            <p><strong>Date of Birth:</strong> {person.dob.date.slice(0,10)}</p>
+            {/* JOB */}
+            <p>
+              <strong>Job:</strong>{" "}
+              {isEditing ? (
+                <input
+                  className="edit-input"
+                  value={person.quick_facts.job}
+                  onChange={(e) =>
+                    setPerson({
+                      ...person,
+                      quick_facts: {
+                        ...person.quick_facts,
+                        job: e.target.value
+                      }
+                    })
+                  }
+                />
+              ) : (
+                person.quick_facts.job || "Not added"
+              )}
+            </p>
+
+            {/* EDUCATION */}
+            <p>
+              <strong>Education:</strong>{" "}
+              {isEditing ? (
+                <input
+                  className="edit-input"
+                  value={person.quick_facts.education}
+                  onChange={(e) =>
+                    setPerson({
+                      ...person,
+                      quick_facts: {
+                        ...person.quick_facts,
+                        education: e.target.value
+                      }
+                    })
+                  }
+                />
+              ) : (
+                person.quick_facts.education || "Not added"
+              )}
+            </p>
+
+            {/* LIFESTYLE */}
+            <p>
+              <strong>Lifestyle:</strong>{" "}
+              {isEditing ? (
+                <input
+                  className="edit-input"
+                  value={person.quick_facts.lifestyle}
+                  onChange={(e) =>
+                    setPerson({
+                      ...person,
+                      quick_facts: {
+                        ...person.quick_facts,
+                        lifestyle: e.target.value
+                      }
+                    })
+                  }
+                />
+              ) : (
+                person.quick_facts.lifestyle || "Not added"
+              )}
+            </p>
+
+            {/* WORK STYLE */}
+            <p>
+              <strong>Work Style:</strong>{" "}
+              {isEditing ? (
+                <input
+                  className="edit-input"
+                  value={person.quick_facts.work_style}
+                  onChange={(e) =>
+                    setPerson({
+                      ...person,
+                      quick_facts: {
+                        ...person.quick_facts,
+                        work_style: e.target.value
+                      }
+                    })
+                  }
+                />
+              ) : (
+                person.quick_facts.work_style || "Not added"
+              )}
+            </p>
           </div>
         </div>
 
         {/* MESSAGE BUTTON */}
-        <button
-          className="message-btn"
-          onClick={() => navigate(`/Chat?id=${person.login.uuid}`)}
-        >
-          Message Her
-        </button>
-
+        {person.id !== "me" && (
+          <button
+            className="message-btn"
+            onClick={() => navigate(`/Chat?id=${person.id}`)}
+          >
+            Message Her
+          </button>
+        )}
       </div>
     </div>
   );

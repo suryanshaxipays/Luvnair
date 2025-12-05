@@ -1,14 +1,20 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { activatePremium } from "../slices/authSlice";
+import { useNavigate } from "react-router-dom";
 import "../Styles/Payment.css";
 import SideImage from "../Assets/login-side.jpg";
 import viewIcon from "../Assets/view.png";
 import hideIcon from "../Assets/hide.png";
 
 const Payment = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [processing, setProcessing] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showCVV, setShowCVV] = useState(false);
-  const [price, setPrice] = useState(19); // default dating subscription price
+  const [price, setPrice] = useState(19);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -64,15 +70,14 @@ const Payment = () => {
 
     setTimeout(() => {
       setShowSuccess(true);
-      const btn = document.querySelector(".checkout-btn");
-      if (btn) btn.textContent = "Successful";
 
-      // Persist dummy subscription info
-      localStorage.setItem("datingPremium", "true");
+      // ⭐ Activate Premium in Redux & localStorage
+      dispatch(activatePremium());
 
       setTimeout(() => {
         setProcessing(false);
-      }, 2000);
+        navigate("/platform"); // Redirect after payment
+      }, 1500);
     }, 2500);
   };
 
